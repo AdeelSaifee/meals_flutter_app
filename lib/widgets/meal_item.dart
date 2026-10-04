@@ -26,7 +26,9 @@ class MealItem extends StatelessWidget {
           children: [
             FadeInImage(
               placeholder: MemoryImage(kTransparentImage),
-              image: NetworkImage(meal.imageUrl),
+              image: (meal.imageUrl.startsWith('http')
+                  ? NetworkImage(meal.imageUrl)
+                  : AssetImage(meal.imageUrl)) as ImageProvider,
               fit: BoxFit.cover,
               height: 200,
               width: double.infinity,
